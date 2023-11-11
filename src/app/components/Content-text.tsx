@@ -1,7 +1,6 @@
 const ContentText: React.FC = () => {
-    
-    return (
-        <div className="content">
+  return (
+    <div className="content">
       <div className="img-head"></div>
       <div className="content-text">
         <div className="head-field"></div>
@@ -39,7 +38,7 @@ const ContentText: React.FC = () => {
         <p>Просим зарегистрироваться на мероприятие.</p>
         <p> </p>
       </div>
-      </div>
+    </div>
   );
 };
 

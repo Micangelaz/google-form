@@ -1,53 +1,82 @@
-// components/MyForm.tsx
 import React, { useState } from 'react';
+import { useForm, SubmitHandler } from 'react-hook-form';
 
-interface FormData {
-  firstName: string;
-  lastName: string;
-  email: string;
-}
+import ContentText from './Content-text';
+import FormInput from './FormInput';
+import { inputs } from './inputs';
+import Footer from './Footer';
 
-interface MyFormProps {
-  onSubmit: (data: FormData) => void;
-}
+// 1
+type Inputs = {
+  firstName: string
+  phone: string
+};
+//  2
 
-const MyForm: React.FC<MyFormProps> = ({ onSubmit }) => {
-  const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
-    email: '',
-  });
+// interface FormData {
+//   firstName: string;
+//   phone: string;
+// }
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+// interface MyFormProps {
+//   onSubmit: (data: FormData) => void;
+// }
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmit(formData);
-  };
+const MyForm: React.FC = () => {
+  //1
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+
+  console.log(watch('firstName')); // watch input value by passing the name of it
+  //2
+  // const [formData, setFormData] = useState<FormData>({
+  //   firstName: '',
+  //   phone: '',
+  // });
+
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
+
+  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  //   e.preventDefault();
+  //   onSubmit(formData);
+  // };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        First Name:
-        <input type="text" name="firstName" value={formData.firstName} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Last Name:
-        <input type="text" name="lastName" value={formData.lastName} onChange={handleChange} />
-      </label>
-      <br />
-      <label>
-        Email:
-        <input type="email" name="email" value={formData.email} onChange={handleChange} />
-      </label>
-      <br />
-      <button type="submit">Submit</button>
+    <form className="container content" onSubmit={handleSubmit(onSubmit)}>
+      <ContentText />
+
+      {inputs.map((field) => (
+        <FormInput
+          key={field.nameInput}
+          label={field.label}
+          nameInput={field.nameInput}
+          // handleChange={handleChange}
+          {...register('firstName')}
+        />
+      ))}
+
+      <div className="buttons">
+        <button className="button-form" id="send" type="submit">
+          Отправить
+        </button>
+        <button className="button-form" id="clear">
+          Очистить форму
+        </button>
+      </div>
+      
+      <div className="warning">Никогда не используйте формы Google для передачи паролей.</div>
+
+      <Footer />
     </form>
   );
 };

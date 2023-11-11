@@ -94,6 +94,42 @@ body {
       transition: 0.6s all;
     }
   }
+  .buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    .button-form {
+      font-family: 'Google Sans', Arial, sans-serif;
+      display: flex;
+      align-items: center;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 36px;
+      cursor: pointer;
+      border: 0;
+      border-radius: 4px;
+    }
+    #send {
+      padding: 0 25px;
+      background: #1a73e8;
+      color: #fff;
+    }
+    #send:hover {
+      box-shadow: 0px 1px 0px 0px rgba(26, 26, 255, 0.2);
+    }
+    #clear {
+      padding: 0px 8px;
+      color: rgb(58, 25, 250);
+      background-color: transparent;
+    }
+    #clear:hover {
+      background-color: #efe3ff;
+    }
+  }
+  .warning {
+    color: rgba(0, 0, 0, 0.66);
+    font-size: 12px;
+  }
   .footer {
     display: flex;
     flex-direction: column;
