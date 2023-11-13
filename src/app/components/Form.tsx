@@ -1,79 +1,55 @@
-import React, { useState } from 'react';
-import { useForm, SubmitHandler } from 'react-hook-form';
+'use client';
+
+import React from 'react';
+import { useForm } from 'react-hook-form';
 
 import ContentText from './Content-text';
 import FormInput from './FormInput';
-import { inputs } from './inputs';
 import Footer from './Footer';
+import Buttons from './Buttons';
 
-// 1
-type Inputs = {
-  firstName: string
-  phone: string
+interface Inputs {
+  firstName: string;
+  phone: string;
+}
+
+const defaultValues: Inputs = {
+  firstName: '',
+  phone: '',
 };
-//  2
-
-// interface FormData {
-//   firstName: string;
-//   phone: string;
-// }
-
-// interface MyFormProps {
-//   onSubmit: (data: FormData) => void;
-// }
 
 const MyForm: React.FC = () => {
-  //1
   const {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
-  } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  } = useForm<Inputs>({ defaultValues, mode: 'onBlur' });
+  const onSubmit = (data: Inputs) => console.log(data);
 
-  console.log(watch('firstName')); // watch input value by passing the name of it
-  //2
-  // const [formData, setFormData] = useState<FormData>({
-  //   firstName: '',
-  //   phone: '',
-  // });
-
-  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   setFormData({
-  //     ...formData,
-  //     [e.target.name]: e.target.value,
-  //   });
-  // };
-
-  // const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-  //   e.preventDefault();
-  //   onSubmit(formData);
-  // };
+  const handleReset = (e: React.MouseEvent<HTMLElement>) => {
+    reset();
+  };
 
   return (
     <form className="container content" onSubmit={handleSubmit(onSubmit)}>
       <ContentText />
 
-      {inputs.map((field) => (
-        <FormInput
-          key={field.nameInput}
-          label={field.label}
-          nameInput={field.nameInput}
-          // handleChange={handleChange}
-          {...register('firstName')}
-        />
-      ))}
+      <FormInput
+        label="Имя"
+        nameInput="firstName"
+        register={register}
+        rules={{ required: { value: true, message: 'Заполните поле' } }}
+        error={errors.firstName?.message}
+      />
+      <FormInput nameInput="phone" label="Номер телефона" register={register} />
 
       <div className="buttons">
-        <button className="button-form" id="send" type="submit">
-          Отправить
-        </button>
-        <button className="button-form" id="clear">
-          Очистить форму
-        </button>
+        <Buttons label="Отправить" buttonID="send" />
+        <Buttons label="Очистить форму" buttonID="clear" onClick={handleReset} />
       </div>
-      
+
       <div className="warning">Никогда не используйте формы Google для передачи паролей.</div>
 
       <Footer />

@@ -1,22 +1,39 @@
-interface InputProps {
+import { InputHTMLAttributes } from "react";
+import {
+  // FieldValues,
+  // InputValidationRules,
+  UseFormRegister,
+  // UseFormRegisterReturn,
+} from "react-hook-form";
+
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   nameInput: string;
-  // handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  register: UseFormRegister<any>;
+  rules?: any;
+  error?: string;
 }
-const FormInput: React.FC<InputProps> = ({ label, nameInput }) => {
+
+const FormInput: React.FC<InputProps> = ({
+  label,
+  nameInput,
+  register,
+  rules,
+  error,
+  ...props
+}) => {
   return (
     <div className="content-input content">
-      <label htmlFor={nameInput} className="labelInput">
+      <label htmlFor={props.name} className="labelInput">
         {label} <span className="colored-text">*</span>
       </label>
       <input
         className="inputForm"
         type="text"
-        name={nameInput}
-        id={nameInput}
         placeholder="Мой ответ"
-        required
+        {...register(nameInput, rules)}
       />
+      {error && <div className="error-message"> картинка {error}</div>}
     </div>
   );
 };
