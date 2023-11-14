@@ -14,6 +14,13 @@ body {
   gap: 12px;
 }
 
+.error {
+  border: 1px solid rgb(217, 48, 37) !important;
+}
+.error .inputForm {
+  border-bottom: 1.5px solid rgb(217, 48, 37) !important;
+}
+
 .container .img-head {
   height: 160px;
   background-image: url(https://lh5.googleusercontent.com/rbf2BiY7LPQRw1wTmpnD5Jn2nOopRSbh4-hXFr91TMs6rGwgXR6k_ftwBrkQHQdasF535X7fFawVGKPS7Dly9Wko9uRjNfL7rmD2ogjbtAtykmbhfIz1e0dCYrGQDiyZkA=w1916);
@@ -69,6 +76,7 @@ body {
   width: 100%;
   padding: 0px;
   margin-top: 10px;
+  margin-bottom: 8px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -88,8 +96,20 @@ body {
 }
 .container .content-input .inputForm:focus {
   outline: none;
-  border-bottom: 1px solid rgb(58, 25, 250);
+  border-bottom: 1.5px solid rgb(58, 25, 250);
   transition: 0.6s all;
+}
+.container .content-input .error-message {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 24px;
+  color: rgb(217, 48, 37);
+}
+.container .content-input .error-message svg {
+  margin-right: 12px;
 }
 .container .buttons {
   display: flex;

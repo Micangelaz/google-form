@@ -22,10 +22,10 @@ const MyForm: React.FC = () => {
   const {
     register,
     handleSubmit,
-    watch,
-    reset,
     formState: { errors },
+    reset,
   } = useForm<Inputs>({ defaultValues, mode: 'onBlur' });
+
   const onSubmit = (data: Inputs) => console.log(data);
 
   const handleReset = (e: React.MouseEvent<HTMLElement>) => {
@@ -40,14 +40,22 @@ const MyForm: React.FC = () => {
         label="Имя"
         nameInput="firstName"
         register={register}
-        rules={{ required: { value: true, message: 'Заполните поле' } }}
+        rules={{ required: { value: true, message: 'Это обязательный вопрос.' } }}
         error={errors.firstName?.message}
+        placeholder="Мой ответ"
       />
-      <FormInput nameInput="phone" label="Номер телефона" register={register} />
+      <FormInput
+        nameInput="phone"
+        label="Номер телефона"
+        register={register}
+        placeholder="Мой ответ"
+        error={errors.phone?.message}
+        rules={{ required: { value: true, message: 'Это обязательный вопрос.' } }}
+      />
 
       <div className="buttons">
-        <Buttons label="Отправить" buttonID="send" />
-        <Buttons label="Очистить форму" buttonID="clear" onClick={handleReset} />
+        <Buttons label="Отправить" buttonID="send" buttonType="submit" />
+        <Buttons label="Очистить форму" buttonID="clear" buttonType="reset" onClick={handleReset} />
       </div>
 
       <div className="warning">Никогда не используйте формы Google для передачи паролей.</div>
@@ -58,3 +66,6 @@ const MyForm: React.FC = () => {
 };
 
 export default MyForm;
+function clearErrors() {
+  throw new Error('Function not implemented.');
+}

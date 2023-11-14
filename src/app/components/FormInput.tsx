@@ -1,10 +1,11 @@
-import { InputHTMLAttributes } from "react";
+import { InputHTMLAttributes } from 'react';
 import {
   // FieldValues,
   // InputValidationRules,
   UseFormRegister,
   // UseFormRegisterReturn,
-} from "react-hook-form";
+} from 'react-hook-form';
+import ErrorMessage from './ErrorMessage';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
@@ -22,18 +23,15 @@ const FormInput: React.FC<InputProps> = ({
   error,
   ...props
 }) => {
+  const hasError = !!error;
+
   return (
-    <div className="content-input content">
+    <div className={`content-input content ${hasError ? 'error' : ''}`}>
       <label htmlFor={props.name} className="labelInput">
         {label} <span className="colored-text">*</span>
       </label>
-      <input
-        className="inputForm"
-        type="text"
-        placeholder="Мой ответ"
-        {...register(nameInput, rules)}
-      />
-      {error && <div className="error-message"> картинка {error}</div>}
+      <input className="inputForm" type="text" {...props} {...register(nameInput, rules)} />
+      {error && <ErrorMessage error={error} />}
     </div>
   );
 };
