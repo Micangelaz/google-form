@@ -5,20 +5,56 @@ body {
   font-family: "docs-Roboto", sans-serif;
   background-size: cover;
   background-position: center;
+  font-size: 14px;
+  width: 100%;
 }
 
 .content {
-  width: 640px;
+  width: 100%;
+  max-width: 640px;
   display: flex;
   flex-direction: column;
   gap: 12px;
 }
 
+@media (max-width: 670px) {
+  .content {
+    max-width: 400px;
+  }
+  .container .img-head {
+    height: 110px !important;
+  }
+  .container .content-text h1 {
+    line-height: initial;
+  }
+  .container .content-input {
+    width: 352px !important;
+  }
+}
+@media (max-width: 400px) {
+  .content {
+    max-width: 320px;
+  }
+  .container .img-head {
+    height: 80px !important;
+    background-size: contain !important;
+  }
+  .container .content-text h1 {
+    line-height: initial;
+  }
+  .container .content-input {
+    width: 272px !important;
+  }
+}
 .error {
   border: 1px solid rgb(217, 48, 37) !important;
 }
 .error .inputForm {
   border-bottom: 1.5px solid rgb(217, 48, 37) !important;
+}
+
+.red-text {
+  color: rgb(217, 48, 37);
 }
 
 .container .img-head {
@@ -28,14 +64,16 @@ body {
   background-position: center;
   border: 1px solid rgb(218, 220, 224);
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .container .content-text {
-  padding: 24px;
+  padding: 22px 24px 16px 24px;
   background-color: #fff;
   border: 1px solid rgb(218, 220, 224);
   border-radius: 8px;
-  font-size: 11pt;
-  line-height: 15pt;
+  line-height: 20px;
   position: relative;
 }
 .container .content-text .head-field {
@@ -52,7 +90,7 @@ body {
   padding-top: 10px;
   font-weight: 400;
   margin: 0;
-  font-size: 24pt;
+  font-size: 32px;
 }
 .container .content-input {
   gap: 0px;
@@ -70,17 +108,15 @@ body {
   margin-bottom: 20px;
   font-weight: 400;
   line-height: 24px;
-  font-size: 12pt;
+  font-size: 16px;
 }
 .container .content-input .inputForm {
-  width: 100%;
   padding: 0px;
   margin-top: 10px;
   margin-bottom: 8px;
   box-sizing: border-box;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 14px;
   font-weight: 400;
   line-height: 20px;
   color: rgb(32, 33, 36);
@@ -106,7 +142,6 @@ body {
   font-size: 12px;
   font-weight: 400;
   line-height: 24px;
-  color: rgb(217, 48, 37);
 }
 .container .content-input .error-message svg {
   margin-right: 12px;
@@ -120,7 +155,6 @@ body {
   font-family: "Google Sans", Arial, sans-serif;
   display: flex;
   align-items: center;
-  font-size: 14px;
   font-weight: 500;
   line-height: 36px;
   cursor: pointer;
@@ -162,7 +196,7 @@ body {
 }
 .container .footer .footer-img {
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: center;
   margin-top: 16px;
   opacity: 0.55;
@@ -173,6 +207,6 @@ body {
 }
 .container .footer .footer-img .img-title {
   color: black;
-  font-size: 22.1px;
   font-family: "Product Sans", Arial, Helvetica, sans-serif;
+  font-size: 23px;
 }/*# sourceMappingURL=style.css.map */
