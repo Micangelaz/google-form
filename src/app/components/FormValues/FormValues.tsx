@@ -1,5 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 import {
+  RegisterOptions,
   UseFormRegister,
 } from 'react-hook-form';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
@@ -8,7 +9,7 @@ interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
   nameInput: string;
   register: UseFormRegister<any>;
-  rules?: any;
+  rules?: RegisterOptions;
   error?: string;
 }
 

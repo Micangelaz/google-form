@@ -17,8 +17,8 @@ const Popup: React.FC<PopupProps> = ({ isOpen, onClose, onClickReset }) => {
           Ваши ответы на все вопросы будут удалены. Это действие нельзя отменить.
         </div>
         <div className="popup-buttons">
-          <Buttons label="Отмена" buttonType="button" onClick={onClose} />
-          <Buttons label="Очистить форму" buttonType="button" onClick={onClickReset} />
+          <Buttons label="Отмена" type="button" onClick={onClose} />
+          <Buttons label="Очистить форму" type="reset" onClick={onClickReset} />
         </div>
       </div>
     </div>

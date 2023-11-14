@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import ContentText from '../Content-text/Content-text';
-import FormInput from '../Form-input/Form-input';
+import ContentText from '../ContentText/ContentText';
+import FormInput from '../FormValues/FormValues';
 import Footer from '../Footer/Footer';
 import Buttons from '../Buttons/Buttons';
 import Popup from '../Popup/Popup';
@@ -25,12 +25,14 @@ const MyForm: React.FC = () => {
     handleSubmit,
     formState: { errors },
     reset,
+    setValue,
+    clearErrors,
   } = useForm<Inputs>({ defaultValues, mode: 'onBlur' });
 
   const onSubmit = (data: Inputs) => {
     console.log(data);
     reset();
-  }
+  };
 
   const [isPopupOpen, setPopupOpen] = useState(false);
 
@@ -44,9 +46,10 @@ const MyForm: React.FC = () => {
 
   const handleReset = (e: React.MouseEvent<HTMLElement>) => {
     reset();
+    clearErrors();
     closePopup();
   };
-  
+
   return (
     <form className="container content" onSubmit={handleSubmit(onSubmit)}>
       <ContentText />
@@ -69,8 +72,8 @@ const MyForm: React.FC = () => {
       />
 
       <div className="buttons">
-        <Buttons label="Отправить" buttonID="send" buttonType="submit" />
-        <Buttons label="Очистить форму" buttonID="clear" buttonType="button" onClick={openPopup} />
+        <Buttons label="Отправить" buttonID="send" type="submit" />
+        <Buttons label="Очистить форму" buttonID="clear" type="button" onClick={openPopup} />
       </div>
 
       <div className="warning">Никогда не используйте формы Google для передачи паролей.</div>
@@ -83,6 +86,3 @@ const MyForm: React.FC = () => {
 };
 
 export default MyForm;
-function clearErrors() {
-  throw new Error('Function not implemented.');
-}
