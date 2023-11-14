@@ -27,7 +27,10 @@ const MyForm: React.FC = () => {
     reset,
   } = useForm<Inputs>({ defaultValues, mode: 'onBlur' });
 
-  const onSubmit = (data: Inputs) => console.log(data);
+  const onSubmit = (data: Inputs) => {
+    console.log(data);
+    reset();
+  }
 
   const [isPopupOpen, setPopupOpen] = useState(false);
 
@@ -43,7 +46,7 @@ const MyForm: React.FC = () => {
     reset();
     closePopup();
   };
-
+  
   return (
     <form className="container content" onSubmit={handleSubmit(onSubmit)}>
       <ContentText />

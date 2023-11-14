@@ -1,9 +1,6 @@
 import { InputHTMLAttributes } from 'react';
 import {
-  // FieldValues,
-  // InputValidationRules,
   UseFormRegister,
-  // UseFormRegisterReturn,
 } from 'react-hook-form';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
