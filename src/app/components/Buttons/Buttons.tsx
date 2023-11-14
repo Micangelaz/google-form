@@ -1,7 +1,7 @@
 interface ButtonProps {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
   label: string;
-  buttonID: string;
+  buttonID?: string;
   buttonType: string;
 }
 

@@ -1,12 +1,13 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 
-import ContentText from './Content-text';
-import FormInput from './FormInput';
-import Footer from './Footer';
-import Buttons from './Buttons';
+import ContentText from '../Content-text/Content-text';
+import FormInput from '../Form-input/Form-input';
+import Footer from '../Footer/Footer';
+import Buttons from '../Buttons/Buttons';
+import Popup from '../Popup/Popup';
 
 interface Inputs {
   firstName: string;
@@ -28,8 +29,19 @@ const MyForm: React.FC = () => {
 
   const onSubmit = (data: Inputs) => console.log(data);
 
+  const [isPopupOpen, setPopupOpen] = useState(false);
+
+  const openPopup = () => {
+    setPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    setPopupOpen(false);
+  };
+
   const handleReset = (e: React.MouseEvent<HTMLElement>) => {
     reset();
+    closePopup();
   };
 
   return (
@@ -55,12 +67,14 @@ const MyForm: React.FC = () => {
 
       <div className="buttons">
         <Buttons label="Отправить" buttonID="send" buttonType="submit" />
-        <Buttons label="Очистить форму" buttonID="clear" buttonType="reset" onClick={handleReset} />
+        <Buttons label="Очистить форму" buttonID="clear" buttonType="button" onClick={openPopup} />
       </div>
 
       <div className="warning">Никогда не используйте формы Google для передачи паролей.</div>
 
       <Footer />
+
+      <Popup isOpen={isPopupOpen} onClose={closePopup} onClickReset={handleReset} />
     </form>
   );
 };

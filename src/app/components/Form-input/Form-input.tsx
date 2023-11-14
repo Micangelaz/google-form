@@ -5,7 +5,7 @@ import {
   UseFormRegister,
   // UseFormRegisterReturn,
 } from 'react-hook-form';
-import ErrorMessage from './ErrorMessage';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
