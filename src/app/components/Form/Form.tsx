@@ -8,16 +8,8 @@ import FormInput from '../FormValues/FormValues';
 import Footer from '../Footer/Footer';
 import Buttons from '../Buttons/Buttons';
 import Popup from '../Popup/Popup';
+import {Inputs, defaultValues} from '../Form/Inputs';
 
-interface Inputs {
-  firstName: string;
-  phone: string;
-}
-
-const defaultValues: Inputs = {
-  firstName: '',
-  phone: '',
-};
 
 const MyForm: React.FC = () => {
   const {
